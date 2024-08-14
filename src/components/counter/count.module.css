@@ -1,0 +1,58 @@
+.container{
+    padding: 150px 15%;
+}
+
+.Count{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 30px 5px;
+    background-color: var(--plane);
+    box-shadow: 1px 1px 20px var(--text);
+}
+
+.Count_card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 280px;
+}
+
+.icon{
+    color:#6f42c1;
+    font-size: 3.5rem;
+    transition: all 0.5s ease 0.1s;
+}
+
+.number{
+    font-size: 3rem;
+    font-weight: 700;
+    transition: all 0.5s ease 0.1s;
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 400;
+    transition: all 0.5s ease 0.1s;  
+}
+
+.Count_card:hover .icon,
+.Count_card:hover .number,
+.Count_card:hover .title{
+    scale: 0.8;
+
+}
+
+@media screen and (max-width: 800px) {
+    .Count_card{
+        width: 100%; 
+    }
+
+    .container{
+        padding: 150px 5%;
+    }
+
+}

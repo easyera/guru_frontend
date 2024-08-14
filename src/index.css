@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css?family=Oxanium:700|Oxanium:400");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text: #000000;
+  --background: #e8f9ff;
+  --primary: #070F2B;
+  --secondary: #068DA9;
+  --accent: #0802A3;
+  --plane: white;
+
+  --text-50: #f2f2f2;
+  --text-100: #e6e6e6;
+  --text-200: #cccccc;
+  --text-300: #b3b3b3;
+  --text-400: #999999;
+  --text-500: #808080;
+  --text-600: #666666;
+  --text-700: #4d4d4d;
+  --text-800: #333333;
+  --text-900: #1a1a1a;
+  --text-950: #0d0d0d;
+  
+  --background-50: #e5f8ff;
+  --background-100: #ccf1ff;
+  --background-200: #99e4ff;
+  --background-300: #66d6ff;
+  --background-400: #33c9ff;
+  --background-500: #00bbff;
+  --background-600: #0096cc;
+  --background-700: #007099;
+  --background-800: #004b66;
+  --background-900: #002533;
+  --background-950: #00131a;
+  
+  --primary-50: #e9edfb;
+  --primary-100: #d3dbf8;
+  --primary-200: #a7b7f1;
+  --primary-300: #7b93ea;
+  --primary-400: #506fe2;
+  --primary-500: #244bdb;
+  --primary-600: #1d3caf;
+  --primary-700: #152d84;
+  --primary-800: #0e1e58;
+  --primary-900: #070f2c;
+  --primary-950: #040816;
+  
+  --secondary-50: #e6fafe;
+  --secondary-100: #cef5fd;
+  --secondary-200: #9decfb;
+  --secondary-300: #6be2fa;
+  --secondary-400: #3ad8f8;
+  --secondary-500: #09cff6;
+  --secondary-600: #07a5c5;
+  --secondary-700: #057c94;
+  --secondary-800: #045362;
+  --secondary-900: #022931;
+  --secondary-950: #011519;
+  
+  --accent-50: #e7e6ff;
+  --accent-100: #cecdfe;
+  --accent-200: #9d9afe;
+  --accent-300: #6d68fd;
+  --accent-400: #3c35fd;
+  --accent-500: #0b03fc;
+  --accent-600: #0902ca;
+  --accent-700: #070297;
+  --accent-800: #040165;
+  --accent-900: #020132;
+  --accent-950: #010019;
+}
+body {
+  font-family: "Oxanium";
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Oxanium";
+  font-weight: 700;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+

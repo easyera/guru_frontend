@@ -1,0 +1,172 @@
+.container {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: white;
+}
+
+.formcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  align-items: start;
+  background-color: var(--primary-300);
+  color: var(--text);
+  box-shadow: 5px 5px 10px 1px var(--text);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.Field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px 10px;
+  gap: 5px;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+sup {
+  color: red;
+}
+
+input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--text-600);
+}
+
+input:focus {
+  outline: none;
+  border: none;
+  transform: scale(1.03);
+}
+
+select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--text-600);
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.primary_btn {
+  background-color: var(--primary-600);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  text-transform: capitalize;
+  color: var(--background);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  flex: 1;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.primary_btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.secondary_btn {
+  background-color: var(--text-800);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  text-transform: capitalize;
+  color: var(--background);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  flex: 1;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.primary_btn:hover,
+.secondary_btn:hover {
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: red;
+}
+
+.categories{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cat_title{
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--accent);
+}
+
+.cat_list{
+  display: flex;
+  gap: 5px;
+  max-width: 500px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.cat_list li{
+  padding: 5px 10px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px var(--text-600);
+  background-color: var(--plane);
+  transition: all 0.5s ease;
+}
+
+.cat_list li:hover{
+  transform: translateY(-4px);
+}
+
+.cat_list li.selected{
+  background-color: var(--text-400);
+  border: 1px solid var(--plane);
+}
+
+

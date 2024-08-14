@@ -1,0 +1,107 @@
+.container {
+    padding: 0 15%;
+}
+
+
+.enroll{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+    background-color: var(--primary);
+    color : var(--background);
+
+}
+
+.enroll_heading{
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.enroll_cards{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.card:nth-child(1){
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.card:nth-child(2){
+    background-color: var(--text);
+    color: var(--background);
+}
+
+.card_heading{
+    font-size: 2.3rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    border-bottom: 2px solid var(--text-800);
+}
+
+.card_ul{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+}
+
+.card_ul li{
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+.card_btn{
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.card_btn:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px var(--secondary);
+    transform: translateY(-5px);
+}
+
+.card:nth-child(1) .card_btn{
+    background: var(--text);
+    color: white;
+}
+
+.card:nth-child(2) .card_btn:hover{
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px 1px var(--secondary);
+}
+
+@media only screen and (max-width: 600px) {
+  .enroll_cards {
+    flex-direction: column;
+  }
+  .container {
+    padding: 0 5%;
+}
+}

@@ -1,0 +1,148 @@
+.herocarousel{
+    height: 90vh;
+    padding: 10vh 10%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slides{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.slide{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+.slide.active{
+    transform: scale(1);
+}
+
+.prev_arrow{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 2em;
+    transform: translateY(-50%);
+}
+
+.prev_arrow:hover, .next_arrow:hover{
+    opacity: 0.5;
+}
+
+.next_arrow{
+    width: 2em;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.carousel_items{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel_indicator{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.carousel_indicator span{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary);
+}
+
+.carousel_indicator span:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px 2px var(--secondary);
+}
+
+.carousel_indicator span.active{
+    background-color: var(--secondary);
+}
+
+.slide_content{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.slide_title{
+    font-size: 2.8rem;
+    color : var(--text);
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+.slide_text{
+    font-size: 1rem;
+    color : var(--text-800);
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: capitalize;
+
+}
+
+.slide_image{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .herocarousel{
+        padding: 30px 10% 50px;
+        height: 120vh;
+    }
+
+    .slide{
+        flex-direction: column-reverse;
+    }
+
+    .slide_image img{
+        width: 300px;
+    }
+
+    .slide_content{
+        width: 100%;
+    }
+
+    .prev_arrow{
+        left: 1%;
+    } 
+    .next_arrow{
+        right: 1%;
+    }
+
+    .carousel_indicator{
+        bottom: 2%;
+    }
+
+}
