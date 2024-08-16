@@ -648,7 +648,7 @@ function Profile() {
                   </div>
                 ) : (
                   <div className={Styles.vister_button}>
-                    <button className={Styles.primary_btn}>message</button>
+                    <button className={Styles.primary_btn} onClick={() => redirecttopath(`/inbox/${User.id}`)}>message</button>
                   </div>
                 )}
               </div>

@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './App.jsx'
+// routes
+
 import Home from './pages/home/home.jsx';
 import Login from "./pages/login/login.jsx";
 import Register from './pages/register/register.jsx';
@@ -25,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="profile" element={<Profile />} />
           <Route path="profile/:id" element={<Profile />} />
           <Route path="inbox" element={<Inbox />} />
+          <Route path="inbox/:id" element={<Inbox />} />
         </Route>
       </Routes>
     </BrowserRouter>

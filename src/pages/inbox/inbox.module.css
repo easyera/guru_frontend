@@ -3,21 +3,76 @@
   flex-direction: row;
   height: 100vh;
   font-family: Arial, sans-serif;
+  background-color: #FFFFFF;
 }
 
 .sidebar {
   width: 25%;
-  background-color: #f5f5f5;
-  border-right: 1px solid #ccc;
-  overflow-y: auto;
+  background-color: #F0F0F0;
+  border-right: 1px solid #919090;
   display: block;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title{
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.conversation_list{
+  width: 100%;
+  overflow-y: auto;
+}
+
+.conversation_item{
+  position: relative;
+  display: flex;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  gap: 10px;
+  align-items: center;
+  justify-content: start;
+  background-color: rgba(255, 255, 255, 0.767);
+  margin: 10px 0;
+}
+
+.no_conversations{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item_image{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.item_image img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.item_name{
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #007bffc7;
 }
 
 .chat_area {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 0 20px;
   background-color: #fff;
   overflow-y: auto;
   display: none;
@@ -34,6 +89,16 @@
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  position: sticky;
+  background-color: whitesmoke;
+  padding: 20px 10px;
+  top: 0;
+}
+
+.chat_messages {
+  flex: 1;
+  min-height: 90vh;
+  overflow-y: auto;
 }
 
 .back_button {
@@ -53,6 +118,12 @@
   margin-bottom: 10px;
 }
 
+.message_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .message_incoming {
   align-self: flex-start;
   background-color: #e6f7ff;
@@ -61,6 +132,59 @@
 .message_outgoing {
   align-self: flex-end;
   background-color: #cfe9e5;
+}
+
+.noselect{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noselect p{
+  font-size: 1.5rem;
+  font-weight: 600 ;
+}
+
+.input_container {
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.input_field {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+input[type="text"]:focus {
+  scale: 0.95;
+  border: #007bff 1px solid;
+}
+
+.send_button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.send_button:hover {
+  background-color: #0069d9c7;
+  scale: 1.1;
 }
 
 @media screen and (max-width: 768px) {
