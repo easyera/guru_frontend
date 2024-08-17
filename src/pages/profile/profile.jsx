@@ -494,6 +494,11 @@ function Profile() {
                   setPosts((prevPosts) =>
                     prevPosts.filter((_, ind) => ind !== Number(index))
                   );
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    Postcount: prevUser.posts_count - 1,
+                  }));
+
                   // console.log('Updated posts:', Posts);
                 }
               } catch (error) {
@@ -516,6 +521,10 @@ function Profile() {
                     setPosts((prevPosts) =>
                       prevPosts.filter((_, ind) => ind !== Number(index))
                     );
+                    setUser((prevUser) => ({
+                      ...prevUser,
+                      Postcount: prevUser.posts_count - 1,
+                    }));
                     // console.log('Updated posts:', Posts);
                   }
                 } else {
@@ -639,7 +648,7 @@ function Profile() {
               <div className={Styles.profile_buttons}>
                 {isOwn ? (
                   <div className={Styles.Own_button}>
-                    <button className={Styles.primary_btn}>inbox</button>
+                    <button className={Styles.primary_btn}  onClick={() => window.location.href = `/inbox`}>inbox</button>
                     <button
                       className={Styles.secondary_btn}
                       onClick={() => setOpenSetting(true)}
