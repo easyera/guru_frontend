@@ -84,7 +84,7 @@ function Callback() {
   const transformData = (data) => {
     const transformedData = {};
     for (const key in data) {
-      if (key !== "password" && key !== "first_name" && key !== "last_name") {
+      if (key !== "password") {
         transformedData[key] = data[key] === null ? "" : data[key];
       }
     }
