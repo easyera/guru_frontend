@@ -171,8 +171,6 @@ function Callback() {
         },
       });
 
-      console.log(response);
-
       if (response.status === 200) {
         if (response.data.message === "User updated successfully") {
           const url = `${API_BASE_URL}/login/google/${role}`;
