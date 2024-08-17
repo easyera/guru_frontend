@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import styles from "./inbox.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 import axios from "axios";
@@ -13,7 +13,9 @@ const Inbox = () => {
   const [newMessage, setNewMessage] = useState("");
   const [selectedConversation, setSelectedConversation] = useState(null);
   const { id } = useParams();
-  const [ws, setWs] = useState(null);
+  const [pollingActive, setPollingActive] = useState(false);
+  const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const fetchConversations = async () => {
@@ -30,7 +32,7 @@ const Inbox = () => {
           },
         });
         setConversations(response.data.conversations);
-        console.log(response.data.conversations);
+        // console.log(response.data.conversations);
       } catch (error) {
         if (error.response && error.response.data.message === "Token expired") {
           await refreshToken();
@@ -66,7 +68,7 @@ const Inbox = () => {
             );
             if (response.status === 200) {
               console.log(response.data.conversations);
-              setConversations(response.data.conversations);
+              // setConversations(response.data.conversations);
             }
           } catch (error) {
             if (error.response.data.message === "Token expired") {
@@ -87,16 +89,104 @@ const Inbox = () => {
     }
   }, []);
 
+  const adjustHeight = (event) => {
+    const textarea = event.target;
+    textarea.style.height = 'auto'; // Reset height to auto to calculate scrollHeight
+    textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
+  };
+
   const redirecttopath = (path) => {
     window.location.href = path;
   };
 
+  const startPolling = () => {
+    setPollingActive(true);
+  };
+
+  useEffect(() => {
+    if (!pollingActive) return;
+
+    const intervalId = setInterval(async () => {
+      if (selectedConversation) {
+        try {
+          await fetchTodayMessages(selectedConversation.id);
+        } catch (error) {
+          console.error("Polling error:", error);
+          if (error.response.data.message === "Token expired") {
+            await refreshToken();
+            window.location.reload();
+          }
+        }
+      }
+    }, 6000);
+
+    return () => clearInterval(intervalId); // Cleanup on unmount or pollingActive change
+  }, [pollingActive, selectedConversation, refreshToken]);
+
+  const stopPolling = () => {
+    setPollingActive(false);
+  };
+
+  // Function to fetch today's messages for a conversation
+  const fetchTodayMessages = async (conversationId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/inbox/getMessage`,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+          params: {
+            conversationId: conversationId,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const newMessages = response.data.messages;
+
+        if (!newMessages.length) return;
+        setSelectedConversation((prevConversation) => {
+          if (!prevConversation) return prevConversation;
+
+          // Filter out messages with time "today"
+          const filteredMessages = prevConversation.messages.filter(
+            (message) => message.time !== "today"
+          );
+
+          // Add the new messages to the filtered messages
+          const updatedMessages = [...filteredMessages, ...newMessages];
+
+          return {
+            ...prevConversation,
+            messages: updatedMessages,
+          };
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching today's messages:", error);
+      if (error.response.data.message === "Token expired") {
+        refreshToken();
+        window.location.reload();
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedConversation?.messages]);
+
   const selectConversation = (conversation) => {
     setSelectedConversation(conversation);
+    if (!pollingActive) {
+      startPolling();
+    }
   };
 
   const goBack = () => {
     setSelectedConversation(null);
+    stopPolling(); // Stop polling when going back
   };
 
   const sendMessage = async () => {
@@ -146,8 +236,8 @@ const Inbox = () => {
         refreshToken();
         window.location.reload();
       } else {
-        // logout();
-        // redirecttopath("/login");
+        logout();
+        redirecttopath("/login");
       }
     }
 
@@ -215,13 +305,18 @@ const Inbox = () => {
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
           <div className={styles.input_container}>
-            <input
-              type="text"
+            <textarea
+              ref={textareaRef}
               className={styles.input_field}
               value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
+              onChange={(e) => {
+                setNewMessage(e.target.value);
+                adjustHeight(e);
+              }}
+              onInput={adjustHeight}
               placeholder="Type your message..."
             />
             <button className={styles.send_button} onClick={sendMessage}>
