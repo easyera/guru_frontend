@@ -5,6 +5,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Inbox = () => {
   const { auth, logout, refreshToken } = useContext(AuthContext);
@@ -26,7 +27,7 @@ const Inbox = () => {
       }
 
       try {
-        const response = await axios.get(`http://localhost:5000/inbox`, {
+        const response = await axios.get(`${API_BASE_URL}/inbox`, {
           headers: {
             authorization: `Bearer ${auth.token}`,
           },
@@ -36,7 +37,7 @@ const Inbox = () => {
       } catch (error) {
         if (error.response && error.response.data.message === "Token expired") {
           await refreshToken();
-          const response = await axios.get(`http://localhost:5000/inbox`, {
+          const response = await axios.get(`${API_BASE_URL}/inbox`, {
             headers: {
               authorization: `Bearer ${auth.token}`,
             },
@@ -58,7 +59,7 @@ const Inbox = () => {
         } else {
           try {
             const response = await axios.post(
-              "http://localhost:5000/inbox/check-conversation",
+              `${API_BASE_URL}/inbox/check-conversation`,
               { id: id },
               {
                 headers: {
@@ -131,7 +132,7 @@ const Inbox = () => {
   const fetchTodayMessages = async (conversationId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/inbox/getMessage`,
+        `${API_BASE_URL}/inbox/getMessage`,
         {
           headers: {
             Authorization: `Bearer ${auth.token}`,
@@ -203,7 +204,7 @@ const Inbox = () => {
     try {
       // Send the message to the backend API
       const response = await axios.post(
-        "http://localhost:5000/inbox/updatemessage",
+        `${API_BASE_URL}/inbox/updatemessage`,
         message,
         {
           headers: {

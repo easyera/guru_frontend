@@ -6,6 +6,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../AuthContext";
 import "ldrs/tailspin";
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Searchbar(props) {
   const redirecttopath = (path) => {
@@ -58,7 +59,7 @@ function Searchbar(props) {
       try {
         // Call search API with the search query
         const response = await axios.get(
-          "http://localhost:5000/dashbord/search",
+          `${API_BASE_URL}/dashbord/search`,
           {
             params: {
               Search: query, // Send search query as a parameter
@@ -81,7 +82,7 @@ function Searchbar(props) {
           console.log("Token refreshed");
           // Retry the search after refreshing the token
           const retryResponse = await axios.get(
-            "http://localhost:5000/dashbord/search",
+            `${API_BASE_URL}/dashbord/search`,
             {
               params: {
                 Search: query,

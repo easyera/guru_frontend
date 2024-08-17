@@ -8,6 +8,7 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import dummy from "../../assets/img/user.png";
 import axios from "axios";
 import { AuthContext } from "../../AuthContext";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Errocomponent
 const ErrorMessage = (props) => {
@@ -287,7 +288,7 @@ function Profile_Edit(props) {
         setLoading(true);
         // Make the API request to submit the form
         const response = await axios.post(
-          `http://localhost:5000/profile/${formData.role}`,
+          `${API_BASE_URL}/profile/${formData.role}`,
           formDataToSend,
           {
             headers: {

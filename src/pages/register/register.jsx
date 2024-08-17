@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Styles from "./register.module.css";
 import Googlelogo from "../../assets/img/logo-google.png";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ErrorMessage = (props) => {
   return <p className={Styles.errorMessage}>{props.message}</p>;
@@ -111,7 +112,7 @@ function Register() {
     if (!Object.values(newErrors).some((error) => error)) {
       try {
         const response = await axios.post(
-          `http://localhost:5000/register/${formData.role}`,
+          `${API_BASE_URL}/register/${formData.role}`,
           {
             firstName: formData.firstName,
             lastName: formData.lastName,
@@ -167,7 +168,7 @@ function Register() {
   };
 
   const handleGoogleLogin = (role) => {
-    window.location.href = `http://localhost:5000/auth/google/${role}`;
+    window.location.href = `${API_BASE_URL}/auth/google/${role}`;
   };
 
   return (

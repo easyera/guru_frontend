@@ -14,6 +14,7 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Post from "../../components/post/post";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // erro component
 const ErrorMessage = (props) => {
@@ -67,7 +68,7 @@ function Profile() {
         } else {
           try {
             const response = await axios.post(
-              "http://localhost:5000/profile",
+              `${API_BASE_URL}/profile`,
               { id: id },
               {
                 headers: {
@@ -108,7 +109,7 @@ function Profile() {
             try {
               if (auth.token !== null) {
                 const response = await axios.get(
-                  `http://localhost:5000/profile`,
+                  `${API_BASE_URL}/profile`,
                   {
                     headers: {
                       authorization: `Bearer ${auth.token}`,
@@ -150,7 +151,7 @@ function Profile() {
             return;
           }
           try {
-            const response = await axios.get(`http://localhost:5000/post`, {
+            const response = await axios.get(`${API_BASE_URL}/post`, {
               headers: {
                 authorization: `Bearer ${auth.token}`,
               },
@@ -287,7 +288,7 @@ function Profile() {
     // eslint-disable-next-line no-useless-catch
     try {
       const response = await axios.post(
-        "http://localhost:5000/post",
+        `${API_BASE_URL}/post`,
         formData,
         {
           headers: {
@@ -327,7 +328,7 @@ function Profile() {
           // Update existing post
 
           const response = await axios.put(
-            `http://localhost:5000/post/postUpdate`,
+            `${API_BASE_URL}/post/postUpdate`,
             formData,
             {
               headers: {
@@ -373,7 +374,7 @@ function Profile() {
           if (Editsection) {
             // Update existing post
             const response = await axios.put(
-              `http://localhost:5000/post/postUpdate`,
+              `${API_BASE_URL}/post/postUpdate`,
               formData,
               {
                 headers: {
@@ -480,7 +481,7 @@ function Profile() {
 
                 // Make the DELETE request
                 const response = await axios.delete(
-                  "http://localhost:5000/post/postDelete",
+                  `${API_BASE_URL}/post/postDelete`,
                   {
                     data: { id, image_url },
                     headers: {
@@ -501,7 +502,7 @@ function Profile() {
                   await refreshToken();
                   const { id, image_url } = Posts[index];
                   const response = await axios.delete(
-                    "http://localhost:5000/post/postDelete",
+                    `${API_BASE_URL}/post/postDelete`,
                     {
                       data: { id, image_url },
                       headers: {

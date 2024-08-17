@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Styles from "./fill.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const ErrorMessage = (props) => {
   return <p className={Styles.errorMessage}>{props.message}</p>;
 };
@@ -102,8 +103,8 @@ function Fill(props) {
     const role = formData.role; // Mentor or Mentee
     const endpoint =
       role === "mentor"
-        ? "http://localhost:5000/profile/mentor"
-        : "http://localhost:5000/profile/mentee";
+        ? `${API_BASE_URL}/profile/mentor`
+        : `${API_BASE_URL}/profile/mentee`;
 
     // Include the selected categories in formData if it's a mentee
     const finalData = {

@@ -5,6 +5,7 @@ import axios from "axios";
 import Styles from "./login.module.css";
 import Googlelogo from "../../assets/img/logo-google.png";
 import { AuthContext } from "../../AuthContext";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 import Fill from "../../components/initial_profile/fill";
 
@@ -104,7 +105,7 @@ function Login() {
     if (!Object.values(newErrors).some((error) => error)) {
       try {
         const response = await axios.post(
-          `http://localhost:5000/login/${formData.role}`,
+          `${API_BASE_URL}/login/${formData.role}`,
           {
             email: formData.email,
             password: formData.password,
@@ -146,7 +147,7 @@ function Login() {
   };
 
   const handleGoogleLogin = (role) => {
-    window.location.href = `http://localhost:5000/auth/google/${role}`;
+    window.location.href = `${API_BASE_URL}/auth/google/${role}`;
   };
 
   return (

@@ -8,6 +8,7 @@ import no_image from "../../assets/img/no_image.png";
 import { AuthContext } from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Post({ data, User }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -36,7 +37,7 @@ function Post({ data, User }) {
     setShowAnswer(!showAnswer);
     if (!showAnswer) {
       try {
-        const response = await axios.get("http://localhost:5000/answers", {
+        const response = await axios.get(`${API_BASE_URL}/answers`, {
           params: {
             Postid: data.id, // Send Postid as a query parameter
           },
@@ -96,7 +97,7 @@ function Post({ data, User }) {
   const handleSubmitAnswer = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/answers",
+        `${API_BASE_URL}/answers`,
         {
           post_id: data.id, // Send post_id as a parameter
           answer: input, // Send the answer
@@ -122,7 +123,7 @@ function Post({ data, User }) {
       if (error.response && error.response.data.message === "Token expired") {
         refreshToken();
         const response = await axios.post(
-          "http://localhost:5000/answersPost",
+          `${API_BASE_URL}/answersPost`,
           {
             post_id: data.id, // Send post_id as a parameter
             answer: input, // Send the answer
@@ -198,7 +199,7 @@ function Post({ data, User }) {
       (async () => {
         try {
           const response = await axios.post(
-            "http://localhost:5000/answers/likesanddislike",
+            `${API_BASE_URL}/answers/likesanddislike`,
             {
               answer_id: updatedAnswer.id,
               which: which,
@@ -225,7 +226,7 @@ function Post({ data, User }) {
           ) {
             refreshToken();
             const response = await axios.post(
-              "http://localhost:5000/likesanddislike",
+              `${API_BASE_URL}/likesanddislike`,
               {
                 answer_id: updatedAnswer.id,
                 which: which,
@@ -290,7 +291,7 @@ function Post({ data, User }) {
       (async () => {
         try {
           const response = await axios.post(
-            "http://localhost:5000/post/likesanddislike",
+            `${API_BASE_URL}/post/likesanddislike`,
             {
               Post_id: post_id,
               which: which,
@@ -317,7 +318,7 @@ function Post({ data, User }) {
           ) {
             refreshToken();
             const response = await axios.post(
-              "http://localhost:5000/likesanddislike",
+              `${API_BASE_URL}/likesanddislike`,
               {
                 Post_id: post_id,
                 which: which,

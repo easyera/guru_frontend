@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ErrorMessage = (props) => {
   return <p className={Styles.errorMessage}>{props.message}</p>;
@@ -30,7 +31,7 @@ function Callback() {
       const role = params.get("role");
 
       try {
-        const url = `http://localhost:5000/login/google/${role}`;
+        const url = `${API_BASE_URL}/login/google/${role}`;
         const headers = { authorization: `Bearer ${token}` };
         const response = await axios.get(url, { headers });
         switch (response.status) {
@@ -153,8 +154,8 @@ function Callback() {
     const role = formData.role; // Mentor or Mentee
     const endpoint =
       role === "mentor"
-        ? "http://localhost:5000/profile/mentor"
-        : "http://localhost:5000/profile/mentee";
+        ? `${API_BASE_URL}/profile/mentor`
+        : `${API_BASE_URL}/profile/mentee`;
 
     // Include the selected categories in formData if it's a mentee
     const finalData = {
@@ -174,7 +175,7 @@ function Callback() {
 
       if (response.status === 200) {
         if (response.data.message === "User updated successfully") {
-          const url = `http://localhost:5000/login/google/${role}`;
+          const url = `${API_BASE_URL}/login/google/${role}`;
           const headers = { authorization: `Bearer ${refreshToken}` };
           try {
             const response = await axios.get(url, { headers });

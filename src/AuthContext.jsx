@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AuthContext = createContext();
 
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
     const refreshToken = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/refresh', { refreshToken: auth.refreshToken });
+            const response = await axios.post(`${API_BASE_URL}/refresh`, { refreshToken: auth.refreshToken });
             const { token } = response.data;
             localStorage.setItem('token', token);
             setAuth({ ...auth, token });

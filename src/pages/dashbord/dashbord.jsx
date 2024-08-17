@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import no_image from "../../assets/img/no_image.png";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // erro component
 const ErrorMessage = (props) => {
@@ -60,7 +61,7 @@ function Dashbord() {
         redirecttopath("/login");
       } else {
         try {
-          const response = await axios.get(`http://localhost:5000/dashbord`, {
+          const response = await axios.get(`${API_BASE_URL}/dashbord`, {
             headers: {
               authorization: `Bearer ${auth.token}`,
             },
@@ -103,7 +104,7 @@ function Dashbord() {
     }
     try {
       const response = await axios.get(
-        "http://localhost:5000/dashbord/mentorlist",
+        `${API_BASE_URL}/dashbord/mentorlist`,
         {
           params: {
             categories: selectedCategories, // Send categories as query parameters
@@ -138,7 +139,7 @@ function Dashbord() {
       return;
     }
     try {
-      const response = await axios.get("http://localhost:5000/dashbord/posts", {
+      const response = await axios.get(`${API_BASE_URL}/dashbord/posts`, {
         params: {
           categories: selectedCategories, // Send categories as query parameters
         },
@@ -172,7 +173,7 @@ function Dashbord() {
     const fetchSinglePost = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/dashbord/singlePost",
+          `${API_BASE_URL}/dashbord/singlePost`,
           {
             params: {
               id: questionId,
@@ -191,7 +192,7 @@ function Dashbord() {
         if (error.response.data.message === "Token expired") {
           refreshToken();
           const retryResponse = await axios.get(
-            "http://localhost:5000/dashbord/singlePost",
+            `${API_BASE_URL}/dashbord/singlePost`,
             {
               params: {
                 id: questionId,
@@ -327,7 +328,7 @@ function Dashbord() {
     // eslint-disable-next-line no-useless-catch
     try {
       const response = await axios.post(
-        "http://localhost:5000/post",
+        `${API_BASE_URL}/post`,
         formData,
         {
           headers: {
