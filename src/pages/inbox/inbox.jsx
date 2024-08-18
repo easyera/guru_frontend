@@ -44,14 +44,15 @@ const Inbox = () => {
           });
           setConversations(response.data.conversations);
         } else {
-          // logout();
-          // redirecttopath("/login");
+          logout();
+          redirecttopath("/login");
           console.error("Error fetching conversations:", error);
         }
       }
     };
 
     if (id) {
+
       const fetch = async () => {
         if (auth.token === null || auth.refreshToken === null) {
           logout();
@@ -68,8 +69,8 @@ const Inbox = () => {
               }
             );
             if (response.status === 200) {
-              console.log(response.data.conversations);
-              // setConversations(response.data.conversations);
+              // console.log(response.data.conversations);
+              setConversations(response.data.conversations);
             }
           } catch (error) {
             if (error.response.data.message === "Token expired") {
