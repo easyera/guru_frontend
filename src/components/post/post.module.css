@@ -317,10 +317,22 @@
 }
 
 @media screen and (max-width: 600px) {
-    .PostImage{
-        width: 440px;
+    .post{
+        width: 400px;
     }
-    
+    .PostImage{
+        width: 400px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .post{
+        width: 335px;
+    }
+    .PostImage{
+        width: 335px;
+    }
 }
 
 

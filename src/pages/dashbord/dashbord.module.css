@@ -492,7 +492,7 @@
 
   .sidebar {
     background-color: var(--plane);
-    padding: 5px;
+    padding: 2px;
     box-shadow: 0 0 500px black;
   }
 

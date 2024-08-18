@@ -25,7 +25,7 @@ const Inbox = () => {
         redirecttopath("/login");
         return;
       }
-
+      
       try {
         const response = await axios.get(`${API_BASE_URL}/inbox`, {
           headers: {
@@ -327,7 +327,7 @@ const Inbox = () => {
           </div>
         </div>
       ) : (
-        <div className={styles.noselect}>
+        <div className={styles.noselect} >
           <p>select one of the conversation</p>
         </div>
       )}

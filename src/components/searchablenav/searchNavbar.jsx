@@ -181,7 +181,7 @@ function Searchbar(props) {
         }
       >
         <div className={Styles.mob_list}>
-          <div className={Styles.item}>
+          <div className={Styles.item} onClick={() => redirecttopath("/inbox")}>
             <FontAwesomeIcon icon="fa-envelope" size="xl" />
             inbox
           </div>

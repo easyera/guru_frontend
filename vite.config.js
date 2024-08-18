@@ -7,6 +7,7 @@ export default defineConfig({
     include: "**/*.jsx",
   })],
   server: {
+    host: true,
     watch: {
       usePolling: true
     }
