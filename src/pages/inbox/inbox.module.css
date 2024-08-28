@@ -28,6 +28,10 @@
   overflow-y: auto;
 }
 
+.close_icon{
+  margin-right: 20px;
+}
+
 .conversation_item{
   position: relative;
   display: flex;

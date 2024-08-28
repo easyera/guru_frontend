@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 import axios from "axios";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Inbox = () => {
   const { auth, logout, refreshToken } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const Inbox = () => {
         redirecttopath("/login");
         return;
       }
-      
+
       try {
         const response = await axios.get(`${API_BASE_URL}/inbox`, {
           headers: {
@@ -52,7 +53,6 @@ const Inbox = () => {
     };
 
     if (id) {
-
       const fetch = async () => {
         if (auth.token === null || auth.refreshToken === null) {
           logout();
@@ -93,7 +93,7 @@ const Inbox = () => {
 
   const adjustHeight = (event) => {
     const textarea = event.target;
-    textarea.style.height = 'auto'; // Reset height to auto to calculate scrollHeight
+    textarea.style.height = "auto"; // Reset height to auto to calculate scrollHeight
     textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
   };
 
@@ -132,17 +132,14 @@ const Inbox = () => {
   // Function to fetch today's messages for a conversation
   const fetchTodayMessages = async (conversationId) => {
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/inbox/getMessage`,
-        {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-          },
-          params: {
-            conversationId: conversationId,
-          },
-        }
-      );
+      const response = await axios.get(`${API_BASE_URL}/inbox/getMessage`, {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+        params: {
+          conversationId: conversationId,
+        },
+      });
       if (response.status === 200) {
         const newMessages = response.data.messages;
 
@@ -253,7 +250,16 @@ const Inbox = () => {
           selectedConversation ? styles.hidden : ""
         }`}
       >
-        <h2 className={styles.title}>Conversation</h2>
+        <h2 className={styles.title}>
+          {" "}
+          <FontAwesomeIcon
+          className={styles.close_icon}
+            icon="fa-solid fa-arrow-left-long"
+            onClick={() => (window.location.href = "/dashboard")}
+            size="sm"
+          />
+          Conversation
+        </h2>
         <ul className={styles.conversation_list}>
           {conversations.map((conversation, index) => (
             <li
@@ -327,7 +333,7 @@ const Inbox = () => {
           </div>
         </div>
       ) : (
-        <div className={styles.noselect} >
+        <div className={styles.noselect}>
           <p>select one of the conversation</p>
         </div>
       )}

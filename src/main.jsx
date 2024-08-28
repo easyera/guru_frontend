@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="login" element={<Login />} />
           <Route path="login/:role" element={<Login />} />
           <Route path="/google/callback" element={<Callback />} />
-          <Route path="dashbord" element={<Dashbord />} />
+          <Route path="dashboard" element={<Dashbord />} />
           <Route path="profile" element={<Profile />} />
           <Route path="profile/:id" element={<Profile />} />
           <Route path="inbox" element={<Inbox />} />
