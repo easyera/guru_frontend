@@ -123,7 +123,7 @@ function Login() {
           }
         } else {
           setToken(response.data.accessToken, response.data.refreshToken);
-          redirecttopath(`/dashbord`);
+          redirecttopath(`/dashboard`);
           clearForm();
         }
       } catch (error) {

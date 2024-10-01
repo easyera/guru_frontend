@@ -59,7 +59,7 @@ function Searchbar(props) {
       try {
         // Call search API with the search query
         const response = await axios.get(
-          `${API_BASE_URL}/dashbord/search`,
+          `${API_BASE_URL}/dashboard/search`,
           {
             params: {
               Search: query, // Send search query as a parameter
@@ -82,7 +82,7 @@ function Searchbar(props) {
           console.log("Token refreshed");
           // Retry the search after refreshing the token
           const retryResponse = await axios.get(
-            `${API_BASE_URL}/dashbord/search`,
+            `${API_BASE_URL}/dashboard/search`,
             {
               params: {
                 Search: query,

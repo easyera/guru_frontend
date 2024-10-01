@@ -194,8 +194,8 @@ function Profile() {
     return transformedData;
   };
   const redirecttopath = (path) => {
-    if (path === "/dashbord") {
-      navigate("/dashbord", { replace: true });
+    if (path === "/dashboard") {
+      navigate("/dashboard", { replace: true });
     } else {
       navigate(path);
     }
@@ -618,7 +618,7 @@ function Profile() {
       <button
         className={Styles.close_btn}
         title="go back"
-        onClick={() => window.location.href = "/dashbord"}
+        onClick={() => window.location.href = "/dashboard"}
       >
         <FontAwesomeIcon icon="fa-solid fa-arrow-left-long" size="2xl" />
       </button>

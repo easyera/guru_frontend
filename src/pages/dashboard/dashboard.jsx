@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
-import Styles from "./dashbord.module.css";
+import Styles from "./dashboard.module.css";
 import Searchbar from "../../components/searchablenav/searchNavbar";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../AuthContext";
@@ -18,7 +18,7 @@ const ErrorMessage = (props) => {
   return <p className={Styles.errorMessage}>{props.message}</p>;
 };
 
-function Dashbord() {
+function Dashboard() {
   const { auth, logout, refreshToken, setUserData } = useContext(AuthContext);
   const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -61,7 +61,7 @@ function Dashbord() {
         redirecttopath("/login");
       } else {
         try {
-          const response = await axios.get(`${API_BASE_URL}/dashbord`, {
+          const response = await axios.get(`${API_BASE_URL}/dashboard`, {
             headers: {
               authorization: `Bearer ${auth.token}`,
             },
@@ -104,7 +104,7 @@ function Dashbord() {
     }
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/dashbord/mentorlist`,
+        `${API_BASE_URL}/dashboard/mentorlist`,
         {
           params: {
             categories: selectedCategories, // Send categories as query parameters
@@ -139,7 +139,7 @@ function Dashbord() {
       return;
     }
     try {
-      const response = await axios.get(`${API_BASE_URL}/dashbord/posts`, {
+      const response = await axios.get(`${API_BASE_URL}/dashboard/posts`, {
         params: {
           categories: selectedCategories, // Send categories as query parameters
         },
@@ -173,7 +173,7 @@ function Dashbord() {
     const fetchSinglePost = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/dashbord/singlePost`,
+          `${API_BASE_URL}/dashboard/singlePost`,
           {
             params: {
               id: questionId,
@@ -192,7 +192,7 @@ function Dashbord() {
         if (error.response.data.message === "Token expired") {
           refreshToken();
           const retryResponse = await axios.get(
-            `${API_BASE_URL}/dashbord/singlePost`,
+            `${API_BASE_URL}/dashboard/singlePost`,
             {
               params: {
                 id: questionId,
@@ -408,7 +408,7 @@ function Dashbord() {
   };
 
   return (
-    <div className={Styles.dashbord}>
+    <div className={Styles.dashboard}>
       <div className={Styles.searchbar}>
         <Searchbar
           openForm={setOpenPostForm}
@@ -633,4 +633,4 @@ function Dashbord() {
   );
 }
 
-export default Dashbord;
+export default Dashboard;

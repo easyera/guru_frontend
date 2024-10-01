@@ -38,7 +38,7 @@ function Callback() {
           case 200:
             setToken(response.data.accessToken, response.data.refreshToken);
             setMessage("Login successful");
-            redirecttopath(`/dashbord`);
+            redirecttopath(`/dashboard`);
             break;
           case 206:
             setRefreshToken(response.data.refreshToken);
@@ -180,7 +180,7 @@ function Callback() {
             if (response.status === 200) {
               const { accessToken, refreshToken } = response.data;
               setToken(accessToken, refreshToken);
-              redirecttopath(`/dashbord`);
+              redirecttopath(`/dashboard`);
             }
           } catch (error) {
             if (error.response.data.message === "Token expired") {
